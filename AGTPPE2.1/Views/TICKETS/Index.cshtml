@@ -1,0 +1,81 @@
+﻿@model IEnumerable<AGTPPE2._1.Models.TICKETS>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.emplacementMaterielTicket)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.typeMaterielTicket)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descriptionIncident)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateCreationIncident)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateClotureIncident)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MATERIEL.emplacementMateriel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NIVEAUURGENCETICKET.libelleUrgence)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.STATUT.libelleStatut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UTILISATEUR.nomUtilisateur)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.emplacementMaterielTicket)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.typeMaterielTicket)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descriptionIncident)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateCreationIncident)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateClotureIncident)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MATERIEL.emplacementMateriel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NIVEAUURGENCETICKET.libelleUrgence)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.STATUT.libelleStatut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UTILISATEUR.nomUtilisateur)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idTicket }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idTicket }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idTicket })
+        </td>
+    </tr>
+}
+
+</table>
