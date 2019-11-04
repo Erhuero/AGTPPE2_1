@@ -33,6 +33,7 @@ namespace AGTPPE2._1.Models
         public string typeConnexion { get; set; }
         public int idCelllule { get; set; }
         public int idBarre { get; set; }
+        public string typeIP { get; set; }
     
         public virtual BARRE BARRE { get; set; }
         public virtual CELLULE CELLULE { get; set; }
@@ -40,5 +41,6 @@ namespace AGTPPE2._1.Models
         public virtual UTILISATEUR UTILISATEUR { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TICKETS> TICKETS { get; set; }
+        public virtual TYPEIP TYPEIP1 { get; set; }
     }
 }

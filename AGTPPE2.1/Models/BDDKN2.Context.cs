@@ -34,5 +34,6 @@ namespace AGTPPE2._1.Models
         public virtual DbSet<TICKETS> TICKETS { get; set; }
         public virtual DbSet<TYPECONNEXION> TYPECONNEXION { get; set; }
         public virtual DbSet<UTILISATEUR> UTILISATEUR { get; set; }
+        public virtual DbSet<TYPEIP> TYPEIP { get; set; }
     }
 }

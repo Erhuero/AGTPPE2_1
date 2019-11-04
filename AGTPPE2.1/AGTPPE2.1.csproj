@@ -173,6 +173,9 @@
     <Compile Include="Models\TYPECONNEXION.cs">
       <DependentUpon>BDDKN2.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TYPEIP.cs">
+      <DependentUpon>BDDKN2.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UTILISATEUR.cs">
       <DependentUpon>BDDKN2.tt</DependentUpon>
     </Compile>

@@ -4,10 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="432513db6dd94bfab48c7574d7ddf498" Name="Diagram1" ZoomLevel="69">
+      <Diagram DiagramId="432513db6dd94bfab48c7574d7ddf498" Name="Diagram1" ZoomLevel="65">
         <EntityTypeShape EntityType="BDDKNModel.BARRE" Width="1.5" PointX="18.375" PointY="5" />
         <EntityTypeShape EntityType="BDDKNModel.CELLULE" Width="1.5" PointX="14.5" PointY="5.875" />
-        <EntityTypeShape EntityType="BDDKNModel.MATERIEL" Width="1.5" PointX="6.25" PointY="3.125" />
+        <EntityTypeShape EntityType="BDDKNModel.MATERIEL" Width="2.875" PointX="6.25" PointY="3.125" />
         <EntityTypeShape EntityType="BDDKNModel.NIVEAUURGENCETICKET" Width="1.5" PointX="24.5" PointY="5.375" />
         <EntityTypeShape EntityType="BDDKNModel.PROFIL" Width="1.5" PointX="10.25" PointY="1.375" />
         <EntityTypeShape EntityType="BDDKNModel.STATUT" Width="1.5" PointX="25.625" PointY="8" />
@@ -29,6 +29,8 @@
         <AssociationConnector Association="BDDKNModel.TICKETS_STATUT3_FK" />
         <AssociationConnector Association="BDDKNModel.TICKETS_UTILISATEUR0_FK" />
         <AssociationConnector Association="BDDKNModel.UTILISATEUR_UTILISATEUR1_FK" />
+        <EntityTypeShape EntityType="BDDKNModel.TYPEIP" Width="1.5" PointX="0.75" PointY="8.875" />
+        <AssociationConnector Association="BDDKNModel.MATERIEL__TYPEIP3_FK1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

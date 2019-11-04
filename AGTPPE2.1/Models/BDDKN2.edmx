@@ -36,6 +36,7 @@
           <Property Name="typeConnexion" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="idCelllule" Type="int" Nullable="false" />
           <Property Name="idBarre" Type="int" Nullable="false" />
+          <Property Name="typeIP" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="NIVEAUURGENCETICKET">
           <Key>
@@ -80,7 +81,14 @@
             <PropertyRef Name="typeConnexion" />
           </Key>
           <Property Name="typeConnexion" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="descriptionConnexion" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="descriptionConnexion" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="TYPEIP">
+          <Key>
+            <PropertyRef Name="typeIP" />
+          </Key>
+          <Property Name="typeIP" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="libelleIP" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="UTILISATEUR">
           <Key>
@@ -95,6 +103,18 @@
           <Property Name="idProfil" Type="int" Nullable="false" />
           <Property Name="idUtilisateur_Autoreinscription" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="MATERIEL__TYPEIP3_FK">
+          <End Role="TYPEIP" Type="Self.TYPEIP" Multiplicity="0..1" />
+          <End Role="MATERIEL" Type="Self.MATERIEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TYPEIP">
+              <PropertyRef Name="typeIP" />
+            </Principal>
+            <Dependent Role="MATERIEL">
+              <PropertyRef Name="typeIP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="MATERIEL_BARRE3_FK">
           <End Role="BARRE" Type="Self.BARRE" Multiplicity="1" />
           <End Role="MATERIEL" Type="Self.MATERIEL" Multiplicity="*" />
@@ -248,7 +268,12 @@
           <EntitySet Name="STATUT" EntityType="Self.STATUT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TICKETS" EntityType="Self.TICKETS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TYPECONNEXION" EntityType="Self.TYPECONNEXION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TYPEIP" EntityType="Self.TYPEIP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UTILISATEUR" EntityType="Self.UTILISATEUR" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="MATERIEL__TYPEIP3_FK" Association="Self.MATERIEL__TYPEIP3_FK">
+            <End Role="TYPEIP" EntitySet="TYPEIP" />
+            <End Role="MATERIEL" EntitySet="MATERIEL" />
+          </AssociationSet>
           <AssociationSet Name="MATERIEL_BARRE3_FK" Association="Self.MATERIEL_BARRE3_FK">
             <End Role="BARRE" EntitySet="BARRE" />
             <End Role="MATERIEL" EntitySet="MATERIEL" />
@@ -360,6 +385,11 @@
             <End Role="UTILISATEUR" EntitySet="UTILISATEUR" />
             <End Role="UTILISATEUR1" EntitySet="UTILISATEUR" />
           </AssociationSet>
+          <EntitySet Name="TYPEIP" EntityType="BDDKNModel.TYPEIP" />
+          <AssociationSet Name="MATERIEL__TYPEIP3_FK1" Association="BDDKNModel.MATERIEL__TYPEIP3_FK1">
+            <End Role="TYPEIP" EntitySet="TYPEIP" />
+            <End Role="MATERIEL" EntitySet="MATERIEL" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="BARRE">
           <Key>
@@ -401,6 +431,8 @@
           <NavigationProperty Name="TYPECONNEXION1" Relationship="BDDKNModel.MATERIEL_TYPECONNEXION1_FK" FromRole="MATERIEL" ToRole="TYPECONNEXION" />
           <NavigationProperty Name="UTILISATEUR" Relationship="BDDKNModel.MATERIEL_UTILISATEUR0_FK" FromRole="MATERIEL" ToRole="UTILISATEUR" />
           <NavigationProperty Name="TICKETS" Relationship="BDDKNModel.TICKETS_MATERIEL2_FK" FromRole="MATERIEL" ToRole="TICKETS" />
+          <Property Name="typeIP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TYPEIP1" Relationship="BDDKNModel.MATERIEL__TYPEIP3_FK1" FromRole="MATERIEL" ToRole="TYPEIP" />
         </EntityType>
         <EntityType Name="NIVEAUURGENCETICKET">
           <Key>
@@ -454,7 +486,7 @@
             <PropertyRef Name="typeConnexion1" />
           </Key>
           <Property Name="typeConnexion1" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="descriptionConnexion" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="descriptionConnexion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="MATERIEL" Relationship="BDDKNModel.MATERIEL_TYPECONNEXION1_FK" FromRole="TYPECONNEXION" ToRole="MATERIEL" />
         </EntityType>
         <EntityType Name="UTILISATEUR">
@@ -619,6 +651,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="TYPEIP">
+          <Key>
+            <PropertyRef Name="typeIP1" />
+          </Key>
+          <Property Name="typeIP1" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="libelleIP" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="MATERIEL" Relationship="BDDKNModel.MATERIEL__TYPEIP3_FK1" FromRole="TYPEIP" ToRole="MATERIEL" />
+        </EntityType>
+        <Association Name="MATERIEL__TYPEIP3_FK1">
+          <End Type="BDDKNModel.TYPEIP" Role="TYPEIP" Multiplicity="0..1" />
+          <End Type="BDDKNModel.MATERIEL" Role="MATERIEL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TYPEIP">
+              <PropertyRef Name="typeIP1" />
+            </Principal>
+            <Dependent Role="MATERIEL">
+              <PropertyRef Name="typeIP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -644,6 +696,7 @@
           <EntitySetMapping Name="MATERIEL">
             <EntityTypeMapping TypeName="BDDKNModel.MATERIEL">
               <MappingFragment StoreEntitySet="MATERIEL">
+                <ScalarProperty Name="typeIP" ColumnName="typeIP" />
                 <ScalarProperty Name="idBarre" ColumnName="idBarre" />
                 <ScalarProperty Name="idCelllule" ColumnName="idCelllule" />
                 <ScalarProperty Name="typeConnexion" ColumnName="typeConnexion" />
@@ -721,6 +774,14 @@
                 <ScalarProperty Name="prenomUtilisateur" ColumnName="prenomUtilisateur" />
                 <ScalarProperty Name="nomUtilisateur" ColumnName="nomUtilisateur" />
                 <ScalarProperty Name="idUtilisateur" ColumnName="idUtilisateur" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TYPEIP">
+            <EntityTypeMapping TypeName="BDDKNModel.TYPEIP">
+              <MappingFragment StoreEntitySet="TYPEIP">
+                <ScalarProperty Name="libelleIP" ColumnName="libelleIP" />
+                <ScalarProperty Name="typeIP1" ColumnName="typeIP" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
