@@ -12,32 +12,20 @@ namespace AGTPPE2._1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class MATERIEL
+    public partial class BARRE
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MATERIEL()
+        public BARRE()
         {
+            this.MATERIEL = new HashSet<MATERIEL>();
             this.TICKETS = new HashSet<TICKETS>();
         }
     
-        public string numeroSerieMateriel { get; set; }
-        public string emplacementMateriel { get; set; }
-        public string modeleMateriel { get; set; }
-        public string ipMateriel { get; set; }
-        public string typeIpMateriel { get; set; }
-        public string numInfologMateriel { get; set; }
-        public string celluleMateriel { get; set; }
-        public string etatMateriel { get; set; }
-        public string numeroChariot { get; set; }
-        public Nullable<int> idUtilisateur { get; set; }
-        public string typeConnexion { get; set; }
-        public int idCelllule { get; set; }
         public int idBarre { get; set; }
+        public string libelleBarre { get; set; }
     
-        public virtual BARRE BARRE { get; set; }
-        public virtual CELLULE CELLULE { get; set; }
-        public virtual TYPECONNEXION TYPECONNEXION1 { get; set; }
-        public virtual UTILISATEUR UTILISATEUR { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MATERIEL> MATERIEL { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TICKETS> TICKETS { get; set; }
     }

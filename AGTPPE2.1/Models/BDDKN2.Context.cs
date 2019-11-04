@@ -25,8 +25,8 @@ namespace AGTPPE2._1.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<BARRE> BARRE { get; set; }
         public virtual DbSet<CELLULE> CELLULE { get; set; }
-        public virtual DbSet<Localiser> Localiser { get; set; }
         public virtual DbSet<MATERIEL> MATERIEL { get; set; }
         public virtual DbSet<NIVEAUURGENCETICKET> NIVEAUURGENCETICKET { get; set; }
         public virtual DbSet<PROFIL> PROFIL { get; set; }

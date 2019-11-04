@@ -17,14 +17,16 @@ namespace AGTPPE2._1.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CELLULE()
         {
-            this.Localiser = new HashSet<Localiser>();
+            this.MATERIEL = new HashSet<MATERIEL>();
+            this.TICKETS = new HashSet<TICKETS>();
         }
     
         public int idCelllule { get; set; }
-        public string libelleUrgence { get; set; }
-        public string numeroCellule { get; set; }
+        public string libelleCellule { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Localiser> Localiser { get; set; }
+        public virtual ICollection<MATERIEL> MATERIEL { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TICKETS> TICKETS { get; set; }
     }
 }

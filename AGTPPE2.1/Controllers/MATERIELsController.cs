@@ -17,7 +17,7 @@ namespace AGTPPE2._1.Controllers
         // GET: MATERIELs
         public ActionResult Index()
         {
-            var mATERIEL = db.MATERIEL.Include(m => m.TYPECONNEXION1).Include(m => m.UTILISATEUR);
+            var mATERIEL = db.MATERIEL.Include(m => m.BARRE).Include(m => m.CELLULE).Include(m => m.TYPECONNEXION1).Include(m => m.UTILISATEUR);
             return View(mATERIEL.ToList());
         }
 
@@ -39,6 +39,8 @@ namespace AGTPPE2._1.Controllers
         // GET: MATERIELs/Create
         public ActionResult Create()
         {
+            ViewBag.idBarre = new SelectList(db.BARRE, "idBarre", "libelleBarre");
+            ViewBag.idCelllule = new SelectList(db.CELLULE, "idCelllule", "libelleCellule");
             ViewBag.typeConnexion = new SelectList(db.TYPECONNEXION, "typeConnexion1", "descriptionConnexion");
             ViewBag.idUtilisateur = new SelectList(db.UTILISATEUR, "idUtilisateur", "nomUtilisateur");
             return View();
@@ -49,7 +51,7 @@ namespace AGTPPE2._1.Controllers
         // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "numeroSerieMateriel,emplacementMateriel,modeleMateriel,ipMateriel,typeIpMateriel,numInfologMateriel,celluleMateriel,etatMateriel,numeroChariot,idUtilisateur,typeConnexion")] MATERIEL mATERIEL)
+        public ActionResult Create([Bind(Include = "numeroSerieMateriel,emplacementMateriel,modeleMateriel,ipMateriel,typeIpMateriel,numInfologMateriel,celluleMateriel,etatMateriel,numeroChariot,idUtilisateur,typeConnexion,idCelllule,idBarre")] MATERIEL mATERIEL)
         {
             if (ModelState.IsValid)
             {
@@ -58,6 +60,8 @@ namespace AGTPPE2._1.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.idBarre = new SelectList(db.BARRE, "idBarre", "libelleBarre", mATERIEL.idBarre);
+            ViewBag.idCelllule = new SelectList(db.CELLULE, "idCelllule", "libelleCellule", mATERIEL.idCelllule);
             ViewBag.typeConnexion = new SelectList(db.TYPECONNEXION, "typeConnexion1", "descriptionConnexion", mATERIEL.typeConnexion);
             ViewBag.idUtilisateur = new SelectList(db.UTILISATEUR, "idUtilisateur", "nomUtilisateur", mATERIEL.idUtilisateur);
             return View(mATERIEL);
@@ -75,6 +79,8 @@ namespace AGTPPE2._1.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.idBarre = new SelectList(db.BARRE, "idBarre", "libelleBarre", mATERIEL.idBarre);
+            ViewBag.idCelllule = new SelectList(db.CELLULE, "idCelllule", "libelleCellule", mATERIEL.idCelllule);
             ViewBag.typeConnexion = new SelectList(db.TYPECONNEXION, "typeConnexion1", "descriptionConnexion", mATERIEL.typeConnexion);
             ViewBag.idUtilisateur = new SelectList(db.UTILISATEUR, "idUtilisateur", "nomUtilisateur", mATERIEL.idUtilisateur);
             return View(mATERIEL);
@@ -85,7 +91,7 @@ namespace AGTPPE2._1.Controllers
         // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "numeroSerieMateriel,emplacementMateriel,modeleMateriel,ipMateriel,typeIpMateriel,numInfologMateriel,celluleMateriel,etatMateriel,numeroChariot,idUtilisateur,typeConnexion")] MATERIEL mATERIEL)
+        public ActionResult Edit([Bind(Include = "numeroSerieMateriel,emplacementMateriel,modeleMateriel,ipMateriel,typeIpMateriel,numInfologMateriel,celluleMateriel,etatMateriel,numeroChariot,idUtilisateur,typeConnexion,idCelllule,idBarre")] MATERIEL mATERIEL)
         {
             if (ModelState.IsValid)
             {
@@ -93,6 +99,8 @@ namespace AGTPPE2._1.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.idBarre = new SelectList(db.BARRE, "idBarre", "libelleBarre", mATERIEL.idBarre);
+            ViewBag.idCelllule = new SelectList(db.CELLULE, "idCelllule", "libelleCellule", mATERIEL.idCelllule);
             ViewBag.typeConnexion = new SelectList(db.TYPECONNEXION, "typeConnexion1", "descriptionConnexion", mATERIEL.typeConnexion);
             ViewBag.idUtilisateur = new SelectList(db.UTILISATEUR, "idUtilisateur", "nomUtilisateur", mATERIEL.idUtilisateur);
             return View(mATERIEL);

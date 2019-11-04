@@ -17,7 +17,7 @@ namespace AGTPPE2._1.Controllers
         // GET: TICKETS
         public ActionResult Index()
         {
-            var tICKETS = db.TICKETS.Include(t => t.MATERIEL).Include(t => t.NIVEAUURGENCETICKET).Include(t => t.STATUT).Include(t => t.UTILISATEUR);
+            var tICKETS = db.TICKETS.Include(t => t.BARRE).Include(t => t.CELLULE).Include(t => t.MATERIEL).Include(t => t.NIVEAUURGENCETICKET).Include(t => t.STATUT).Include(t => t.UTILISATEUR);
             return View(tICKETS.ToList());
         }
 
@@ -39,6 +39,8 @@ namespace AGTPPE2._1.Controllers
         // GET: TICKETS/Create
         public ActionResult Create()
         {
+            ViewBag.idBarre = new SelectList(db.BARRE, "idBarre", "libelleBarre");
+            ViewBag.idCelllule = new SelectList(db.CELLULE, "idCelllule", "libelleCellule");
             ViewBag.numeroSerieMateriel = new SelectList(db.MATERIEL, "numeroSerieMateriel", "emplacementMateriel");
             ViewBag.idUrgence = new SelectList(db.NIVEAUURGENCETICKET, "idUrgence", "libelleUrgence");
             ViewBag.etatStatut = new SelectList(db.STATUT, "etatStatut", "libelleStatut");
@@ -51,7 +53,7 @@ namespace AGTPPE2._1.Controllers
         // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idTicket,emplacementMaterielTicket,typeMaterielTicket,descriptionIncident,dateCreationIncident,dateClotureIncident,idUtilisateur,idUrgence,numeroSerieMateriel,etatStatut")] TICKETS tICKETS)
+        public ActionResult Create([Bind(Include = "idTicket,emplacementMaterielTicket,typeMaterielTicket,descriptionIncident,dateCreationIncident,dateClotureIncident,idUtilisateur,idUrgence,numeroSerieMateriel,etatStatut,idCelllule,idBarre")] TICKETS tICKETS)
         {
             if (ModelState.IsValid)
             {
@@ -60,6 +62,8 @@ namespace AGTPPE2._1.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.idBarre = new SelectList(db.BARRE, "idBarre", "libelleBarre", tICKETS.idBarre);
+            ViewBag.idCelllule = new SelectList(db.CELLULE, "idCelllule", "libelleCellule", tICKETS.idCelllule);
             ViewBag.numeroSerieMateriel = new SelectList(db.MATERIEL, "numeroSerieMateriel", "emplacementMateriel", tICKETS.numeroSerieMateriel);
             ViewBag.idUrgence = new SelectList(db.NIVEAUURGENCETICKET, "idUrgence", "libelleUrgence", tICKETS.idUrgence);
             ViewBag.etatStatut = new SelectList(db.STATUT, "etatStatut", "libelleStatut", tICKETS.etatStatut);
@@ -79,6 +83,8 @@ namespace AGTPPE2._1.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.idBarre = new SelectList(db.BARRE, "idBarre", "libelleBarre", tICKETS.idBarre);
+            ViewBag.idCelllule = new SelectList(db.CELLULE, "idCelllule", "libelleCellule", tICKETS.idCelllule);
             ViewBag.numeroSerieMateriel = new SelectList(db.MATERIEL, "numeroSerieMateriel", "emplacementMateriel", tICKETS.numeroSerieMateriel);
             ViewBag.idUrgence = new SelectList(db.NIVEAUURGENCETICKET, "idUrgence", "libelleUrgence", tICKETS.idUrgence);
             ViewBag.etatStatut = new SelectList(db.STATUT, "etatStatut", "libelleStatut", tICKETS.etatStatut);
@@ -91,7 +97,7 @@ namespace AGTPPE2._1.Controllers
         // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idTicket,emplacementMaterielTicket,typeMaterielTicket,descriptionIncident,dateCreationIncident,dateClotureIncident,idUtilisateur,idUrgence,numeroSerieMateriel,etatStatut")] TICKETS tICKETS)
+        public ActionResult Edit([Bind(Include = "idTicket,emplacementMaterielTicket,typeMaterielTicket,descriptionIncident,dateCreationIncident,dateClotureIncident,idUtilisateur,idUrgence,numeroSerieMateriel,etatStatut,idCelllule,idBarre")] TICKETS tICKETS)
         {
             if (ModelState.IsValid)
             {
@@ -99,6 +105,8 @@ namespace AGTPPE2._1.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.idBarre = new SelectList(db.BARRE, "idBarre", "libelleBarre", tICKETS.idBarre);
+            ViewBag.idCelllule = new SelectList(db.CELLULE, "idCelllule", "libelleCellule", tICKETS.idCelllule);
             ViewBag.numeroSerieMateriel = new SelectList(db.MATERIEL, "numeroSerieMateriel", "emplacementMateriel", tICKETS.numeroSerieMateriel);
             ViewBag.idUrgence = new SelectList(db.NIVEAUURGENCETICKET, "idUrgence", "libelleUrgence", tICKETS.idUrgence);
             ViewBag.etatStatut = new SelectList(db.STATUT, "etatStatut", "libelleStatut", tICKETS.etatStatut);

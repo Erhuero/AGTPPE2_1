@@ -14,12 +14,6 @@ namespace AGTPPE2._1.Models
     
     public partial class TICKETS
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TICKETS()
-        {
-            this.Localiser = new HashSet<Localiser>();
-        }
-    
         public int idTicket { get; set; }
         public string emplacementMaterielTicket { get; set; }
         public string typeMaterielTicket { get; set; }
@@ -30,9 +24,11 @@ namespace AGTPPE2._1.Models
         public int idUrgence { get; set; }
         public string numeroSerieMateriel { get; set; }
         public int etatStatut { get; set; }
+        public int idCelllule { get; set; }
+        public int idBarre { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Localiser> Localiser { get; set; }
+        public virtual BARRE BARRE { get; set; }
+        public virtual CELLULE CELLULE { get; set; }
         public virtual MATERIEL MATERIEL { get; set; }
         public virtual NIVEAUURGENCETICKET NIVEAUURGENCETICKET { get; set; }
         public virtual STATUT STATUT { get; set; }
